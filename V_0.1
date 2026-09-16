@@ -1,0 +1,42 @@
+import os
+import pandas as pd
+
+
+sample_data = {
+    " Full Name ": [" Alice ", "Bob", " Alice ", "Charlie", None],
+    "AGE": [25, 30, 25, None, 22],
+    " Join Date ": ["2023-01-01", "2023/02/01", "2023-01-01", "2023-03-15", None],
+    " Email ": ["alice@test.com", "bob@test.com", "alice@test.com", "charlie@test.com", "unknown"]
+}
+
+dirty_file_path = "sample_dirty_data.csv"
+pd.DataFrame(sample_data).to_csv(dirty_file_path, index=False)
+print(f"Created dummy file: '{dirty_file_path}'\n")
+
+
+def clean_csv(file_path):
+    print(f"Loading '{file_path}'...")
+    df = pd.read_csv(file_path)
+
+    
+    df.columns = df.columns.str.strip().str.lower()
+    
+    
+    for col in df.select_dtypes(include=['object']).columns:
+        df[col] = df[col].astype(str).str.strip()
+
+    
+    initial_rows = len(df)
+    df = df.drop_duplicates()
+    print(f"Removed {initial_rows - len(df)} duplicate rows.")
+
+    
+    df = df.fillna("N/A")
+
+    
+    output_path = "cleaned_output.csv"
+    df.to_csv(output_path, index=False)
+    print(f"\nSuccess! Cleaned data saved to '{output_path}'.")
+
+
+clean_csv(dirty_file_path)
