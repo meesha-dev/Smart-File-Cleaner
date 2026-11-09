@@ -24,6 +24,14 @@ A lightweight, interactive Python utility built to automate the tedious process 
 
 ---
 
+## 📈 Project Evolution (Changelog)
+
+* **Version 0.5 (Current):** Added an automated audit summary report displaying row counts, duplicate metrics, and cleaning confirmation.
+* **Version 0.4:** Added interactive CLI menu and dynamic toggle options for custom data cleaning.
+* **Version 0.3:** Added support for Excel file formats alongside CSV.
+* **Version 0.2:** Implemented core data cleaning logic (whitespace trimming, header normalization, duplicate removal).
+* **Version 0.1:** Initial script setup and file loading architecture.
+
 ## 💻 How to Run
 
 1. Clone the repository:
